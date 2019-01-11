@@ -1,0 +1,33 @@
+.App {
+  width: 30%;
+  margin: 20px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.glyphicon-plus {
+  margin-left: 5px;
+}
+
+.glyphicon-check {
+  margin-left: 10px;
+}
+
+.TodoList {
+  margin-top: 5px
+}
+
+/*could use props or state instead to switch between btn-secondary and btn-danger or btn-success*/
+.hover-red:hover{
+  color: #fff;
+  background-color: #d43f3a;
+}
+
+.hover-green:hover{
+  color: #fff;
+  background-color: #5cb85c;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
