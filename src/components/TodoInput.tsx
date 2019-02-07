@@ -41,8 +41,7 @@ export class TodoInput extends Component<IMyProps, IMyState> {
         event.preventDefault();
         if(this.state.todoItem)
         {
-            const newItem = new TodoItemObject(this.state.todoItem, false);
-            // Will add id when we hook up to back end.
+            const newItem = new TodoItemObject("", false, 0, 0, this.state.todoItem);
             this.props.addTodoItem(newItem);
             this.setState({ todoItem: ''})
         }

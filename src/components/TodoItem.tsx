@@ -16,7 +16,7 @@ export const TodoItem = (props: IItemProps) => {
         props.toggleTodoItemChecked(props.todoItem);
     }
     
-    const { completed, text } = props.todoItem;
+    const { completed, title } = props.todoItem;
     const toggleButtonType = completed ? 'btn-success' : 'btn-secondary';
     const textClassName = completed ? 'line-through' : '';
 
@@ -28,7 +28,7 @@ export const TodoItem = (props: IItemProps) => {
                 </button>
             </span>
             <span className={textClassName}>
-                {text}
+                {title}
             </span>
             <span className="pull-right">
                 <button type="button" onClick={(e) => removeClicked(e,props)} className="btn btn-secondary btn-xs hover-red">

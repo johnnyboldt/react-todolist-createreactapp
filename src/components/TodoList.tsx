@@ -15,7 +15,7 @@ export const TodoList = (props : IItemProps) => {
                 todoItem={todoItem}
                 removeTodoItem={props.removeTodoItem}
                 toggleTodoItemChecked={props.toggleTodoItemChecked}
-                key={todoItem.text} // Todo: use ID instead when backend hooked up
+                key={todoItem.id}
             />
         );
     });

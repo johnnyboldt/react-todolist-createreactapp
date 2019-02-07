@@ -6,6 +6,9 @@ import "./App.css";
 import { TodoInput } from "./TodoInput";
 import { TodoList } from "./TodoList";
 import { TodoItemObject } from "../objects/TodoItemObject";
+import axios from 'axios';
+
+const ROOT_URL = 'https://jsonplaceholder.typicode.com';
 
 interface IMyState {
   todoItems: TodoItemObject[]
@@ -18,6 +21,20 @@ class App extends Component<{}, IMyState>{
     this.state = {
         todoItems: []
     };
+
+    this.getTodoItems();
+  }
+
+  private getTodoItems(){
+    var self=this;
+    axios.get(`${ROOT_URL}/todos`)
+    .then(function (response: any) {
+      const todoItem = response.data.map((todoItem: any) =>  
+      {
+        const newItem = new TodoItemObject(todoItem.body, todoItem.completed, todoItem.userId, todoItem.id, todoItem.title);
+        self.addTodoItemToState(newItem);
+      });
+    });
   }
 
   public render(){
@@ -42,6 +59,15 @@ class App extends Component<{}, IMyState>{
   }
 
   public addTodoItem = (todoItemObject: TodoItemObject) => {
+    const response = axios.post(`${ROOT_URL}/posts`, todoItemObject)
+    .then(function (response: any) {
+      todoItemObject.id=response.data.id;
+    });
+    this.addTodoItemToState(todoItemObject);
+  }
+
+
+  public addTodoItemToState = (todoItemObject: TodoItemObject) => {
     this.setState({
       todoItems: [...this.state.todoItems, todoItemObject]
     });
@@ -50,6 +76,9 @@ class App extends Component<{}, IMyState>{
   private removeTodoItem = (todoItemObject: TodoItemObject) => {
     this.setState({
       todoItems: _.pull(this.state.todoItems, todoItemObject)
+    });
+    axios.delete(`${ROOT_URL}/posts/${todoItemObject.id}`)
+    .then(function (response: any) {
     });
   }
 
@@ -61,7 +90,6 @@ class App extends Component<{}, IMyState>{
       todoItems: newToDoItems
     });
   }
-
 }
 
 export default App;

@@ -1,8 +1,14 @@
 export class TodoItemObject {
-    public text: string;
+    public userId: number;
+    public id: number;
+    public title: string;
+    public body: string;
     public completed: boolean;
-    constructor(text: string, completed: boolean){
-        this.text=text;
+    constructor(body: string, completed: boolean, userId: number, id: number, title: string){
+        this.body=body;
         this.completed=completed;
+        this.userId=userId;
+        this.id=id;
+        this.title=title;
     }
 }
